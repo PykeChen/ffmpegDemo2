@@ -18,7 +18,8 @@ message("CURRENT_DIR:" ${CMAKE_SOURCE_DIR})
 
 add_library( MyFFmpeg
         SHARED
-        src/main/cpp/native-lib.cpp )
+        src/main/cpp/native-lib.cpp
+        src/main/cpp/tutorial01.cpp)
 
 
 find_library( log-lib

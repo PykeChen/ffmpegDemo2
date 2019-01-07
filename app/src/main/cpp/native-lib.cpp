@@ -1,11 +1,27 @@
 #include <jni.h>
 #include <string>
+#include "tutorial01.h"
 
 extern "C" {
 #include "libavformat/avformat.h"
 #include "libavcodec/avcodec.h"
 #include "libavutil/avutil.h"
 #include "libavfilter/avfilter.h"
+
+JNIEXPORT jint JNICALL
+Java_com_example_cpy_ffmpegdemo2_MainActivity_save5HeadPic2Disk(JNIEnv *env, jobject instance,
+                                                                jstring videoPath_, jstring dirPath_) {
+    const char *videoPath = env->GetStringUTFChars(videoPath_, 0);
+    const char *dirPath = env->GetStringUTFChars(dirPath_, 0);
+
+    int result = SaveHead5Frame2Disk(videoPath, dirPath);
+
+    env->ReleaseStringUTFChars(videoPath_, videoPath);
+    env->ReleaseStringUTFChars(videoPath_, dirPath);
+
+    return result;
+}
+
 
 JNIEXPORT jstring JNICALL
 Java_com_example_cpy_ffmpegdemo2_MainActivity_avformatInfo(JNIEnv *env, jobject instance) {
